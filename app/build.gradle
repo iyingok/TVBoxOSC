@@ -17,10 +17,12 @@ android {
             }
         }
     }
-
     packagingOptions {
-        exclude 'META-INF/DEPENDENCIES'
+        resources {
+            excludes += ['META-INF/DEPENDENCIES']
+        }
     }
+
 
     buildTypes {
         debug {
@@ -46,15 +48,16 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    lintOptions {
-        checkReleaseBuilds false
-        abortOnError false
-    }
     dexOptions {
         javaMaxHeapSize "4g"
         additionalParameters += '--multi-dex'
         additionalParameters += '--set-max-idx-number=48000'
         additionalParameters += '--minimal-main-dex'
+    }
+    namespace 'com.github.tvbox.osc'
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
     }
 }
 
